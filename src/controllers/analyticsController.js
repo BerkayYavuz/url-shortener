@@ -1,5 +1,6 @@
 const redisClient = require('../config/redis');
-const pool = require('../config/database'); // PostgreSQL'e de erişelim
+const pool = require('../config/database');
+
 
 // Tıklanma sayısını artır ve yönlendir
 const trackClickAndRedirect = async (req, res) => {
