@@ -3,6 +3,10 @@ const router = express.Router();
 const { shortenUrl } = require('../controllers/urlController');
 const { trackClickAndRedirect, getClickStats } = require('../controllers/analyticsController');
 
+// Debugging
+console.log('trackClickAndRedirect:', trackClickAndRedirect); // Bu satırı ekle
+console.log('getClickStats:', getClickStats);  // Bu satırı ekle
+
 // URL kısaltma
 router.post('/shorten', shortenUrl);
 

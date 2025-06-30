@@ -21,6 +21,14 @@ const findByShortCode = async (short_code) => {
     const result = await db.query(query, [short_code]);
     return result.rows[0];
 };
+const updateClickCountInDb = async (shortCode) => {
+    const count = await redisClient.get(`clicks:${shortCode}`);
+    const result = await db.query(
+        'UPDATE urls SET click_count = $1 WHERE short_code = $2 RETURNING *',
+        [parseInt(count) || 0, shortCode]
+    );
+    return result.rows[0];
+};
 
 // URL Yönlendirme
 const redirectUrl = async (req, res) => {
@@ -50,4 +58,5 @@ const redirectUrl = async (req, res) => {
 module.exports = {
     insertUrl,
     findByShortCode,
+    updateClickCountInDb,
 };

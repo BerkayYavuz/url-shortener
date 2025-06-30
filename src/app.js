@@ -1,25 +1,19 @@
-// src/app.js
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-
-// Route dosyalarını dahil et
 const urlRoutes = require('./routes/urlRoutes');
-const analyticsRoutes = require('./routes/analyticsRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes'); // Bu doğru tanımlandı mı?
 
 const app = express();
 
-// Güvenlik ve loglama middlewares
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 
-// URL kısaltma işlemleri
+// URL routes ve analytics routes'unu doğru tanımlayalım
 app.use('/', urlRoutes);
-
-// Analytics işlemleri (tıklama sayacı gibi)
-app.use('/', analyticsRoutes);
+app.use('/', analyticsRoutes); // Bunu kontrol et, doğru olmalı!
 
 module.exports = app;

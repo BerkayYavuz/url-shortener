@@ -49,7 +49,7 @@ const redirectUrl = async (req, res) => {
             return res.status(404).json({ error: 'Kısaltılmış URL bulunamadı' });
         }
 
-        //  Vadesi geçmişse HTTP 410 dön
+        // Vadesi geçmişse HTTP 410 dön
         if (entry.expires_at && new Date(entry.expires_at) < new Date()) {
             return res.status(410).json({ error: 'Bu bağlantının süresi dolmuş' });
         }
@@ -60,7 +60,6 @@ const redirectUrl = async (req, res) => {
         return res.status(500).json({ error: 'Sunucu hatası' });
     }
 };
-
 
 module.exports = {
     shortenUrl,
